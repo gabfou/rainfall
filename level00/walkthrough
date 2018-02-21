@@ -1,0 +1,19 @@
+# Walkthrough level0
+
+./level0 ""
+> No !
+
+gdb ./level0
+
+disas main
+disas atoi
+
+lecture du code asm, transcription en C:
+
+	En gros on remarque une comparaison apres ATOI qui jump (jne) a la fin si toutefois la condition est fausse, en suivant la logique derriere cela, on examine le contenu des registre avant la comparaison, dedans on trouve 423.
+	
+	Ensuite on teste "./level0 423", ca reagit pas pareil, et on entre dans un terminal ultra basique
+	apres un whoami, on remarque qu'on est level1, et donc en cherchant un peu on trouve le fichier /home/user/level1/.pass contenant le flag 1fe8a524fa4bec01ca4ea2a869af2a02260d4a7d5fe7e7c24d8617e6dca12d3a
+
+	Ensuite, un petit su level1 avec le bon flag et le tour est joué.
+
